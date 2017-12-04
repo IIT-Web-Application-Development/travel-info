@@ -13,22 +13,27 @@ module.exports = function(app, passport) {
             user : req.user
         });
     });
-
+    // LOGOUT ==============================
+    app.get('/logout', function(req, res) {
+        req.logout();
+        res.redirect('/');
+    });
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================
 // =============================================================================
 
     // facebook -------------------------------
 
-        // send to facebook to do the authentication
-        app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['public_profile', 'email'] }));
+        // route for facebook authentication and login
+    app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
-        // handle the callback after facebook has authenticated the user
-        app.get('/auth/facebook/callback',
-            passport.authenticate('facebook', {
-                successRedirect : '/profile',
-                failureRedirect : '/'
-            }));
+    // handle the callback after facebook has authenticated the user
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect : '/profile',
+            failureRedirect : '/'
+        }));
+
 
     // twitter --------------------------------
 
@@ -61,8 +66,8 @@ module.exports = function(app, passport) {
 
     // facebook -------------------------------
 
-        // send to facebook to do the authentication
-        app.get('/connect/facebook', passport.authorize('facebook', { scope : ['public_profile', 'email'] }));
+       // send to facebook to do the authentication
+        app.get('/connect/facebook', passport.authorize('facebook', { scope : 'email' }));
 
         // handle the callback after facebook has authorized the user
         app.get('/connect/facebook/callback',
@@ -70,7 +75,6 @@ module.exports = function(app, passport) {
                 successRedirect : '/profile',
                 failureRedirect : '/'
             }));
-
     // twitter --------------------------------
 
         // send to twitter to do the authentication
@@ -125,12 +129,6 @@ module.exports = function(app, passport) {
         user.save(function(err) {
             res.redirect('/profile');
         });
-    });
-
-    // LOGOUT ==============================
-    app.get('/logout', function(req, res) {
-        req.logout();
-        res.redirect('/');
     });
 
 };

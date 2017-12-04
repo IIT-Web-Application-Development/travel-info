@@ -8,6 +8,13 @@ body{
   padding:0px; 
   margin:0px;
 }
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+nav {
+  box-shadow: 5px 4px 5px #000;
+}
 
 /*----------------------------------*/
 /*------General Cities Pages--------*/

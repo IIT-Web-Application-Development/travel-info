@@ -20,7 +20,7 @@ nav {
 /*------General Cities Pages--------*/
 /*----------------------------------*/
 .content {
-  margin: 50px;
+  margin: 50px 50px 0px 50px;
 }
 .swiper-container {
     width: 100%;
@@ -99,4 +99,24 @@ nav {
   color: white;
   font-size: 16px;
   padding: 16px 32px;
+}
+
+.morePic {
+  margin-bottom: 20px;
+}
+
+#picbtn {
+  background-color: #639f99;
+  color: white;
+  padding: 10px;
+  display: block;
+  margin: auto;
+} 
+.photos {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+img {
+  padding: 20px;
 }

@@ -1,0 +1,32 @@
+{
+    "data": {
+        "title": "Travel-info Flashcards",
+        "cards": [
+            {
+                "question": "Is fortune cookie a traditional Chinese cookie?",
+                "hint": "Have you ever visited China?",
+                "answer": "No, the Japanese Hagiwara family invented fortune cookies at Golden Gate Park's Tea Garden."
+            },
+            {
+                "question": "Where is Yayoi Kusama's Infinity Mirrored Room?",
+                "hint": "It's located in LA LA LAND",
+                "answer": "Los Angeles"
+            },
+            {
+                "question": "Is it illegal to pay for sex in Las Vegas?",
+                "hint": "Maybe contrary to the popular relief",
+                "answer": "no"
+            },
+            {
+                "question": "Where does Route 66 start?",
+                "hint": "The biggest city in the Midwestern United States",
+                "answer": "Chicago"
+            },
+            {
+                "question": "Is New York City near the sea?",
+                "hint": "Why it's so cold there?",
+                "answer": "The city also boasts 14 miles of beaches."
+            }
+        ]
+    }
+}

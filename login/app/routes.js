@@ -9,32 +9,31 @@ module.exports = function(app, passport) {
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
-        res.redirect('/profile'), {
+        res.render('profile.ejs', {
             user : req.user
-        };
+        });
     });
-
     // LOGOUT ==============================
     app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
     });
-
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================
 // =============================================================================
 
     // facebook -------------------------------
 
-        // send to facebook to do the authentication
-        app.get('/auth/facebook/token', passport.authenticate('facebook-token', { scope : ['public_profile', 'email'] }));
+        // route for facebook authentication and login
+    app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
-        // handle the callback after facebook has authenticated the user
-        app.get('/auth/facebook/callback',
-            passport.authenticate('facebook-token', {
-                successRedirect : '/profile',
-                failureRedirect : '/'
-            }));
+    // handle the callback after facebook has authenticated the user
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect : '/profile',
+            failureRedirect : '/'
+        }));
+
 
     // twitter --------------------------------
 
@@ -65,20 +64,10 @@ module.exports = function(app, passport) {
 // AUTHORIZE (ALREADY LOGGED IN / CONNECTING OTHER SOCIAL ACCOUNT) =============
 // =============================================================================
 
-    // // locally --------------------------------
-    //     app.get('/connect/local', function(req, res) {
-    //         res.render('connect-local.ejs', { message: req.flash('loginMessage') });
-    //     });
-    //     app.post('/connect/local', passport.authenticate('local-signup', {
-    //         successRedirect : '/profile', // redirect to the secure profile section
-    //         failureRedirect : '/connect/local', // redirect back to the signup page if there is an error
-    //         failureFlash : true // allow flash messages
-    //     }));
-
     // facebook -------------------------------
 
-        // send to facebook to do the authentication
-        app.get('/connect/facebook', passport.authorize('facebook', { scope : ['public_profile', 'email'] }));
+       // send to facebook to do the authentication
+        app.get('/connect/facebook', passport.authorize('facebook', { scope : 'email' }));
 
         // handle the callback after facebook has authorized the user
         app.get('/connect/facebook/callback',
@@ -86,7 +75,6 @@ module.exports = function(app, passport) {
                 successRedirect : '/profile',
                 failureRedirect : '/'
             }));
-
     // twitter --------------------------------
 
         // send to twitter to do the authentication
@@ -115,19 +103,6 @@ module.exports = function(app, passport) {
 // =============================================================================
 // UNLINK ACCOUNTS =============================================================
 // =============================================================================
-// used to unlink accounts. for social accounts, just remove the token
-// for local account, remove email and password
-// user account will stay active in case they want to reconnect in the future
-
-    // // local -----------------------------------
-    // app.get('/unlink/local', isLoggedIn, function(req, res) {
-    //     var user            = req.user;
-    //     user.local.email    = undefined;
-    //     user.local.password = undefined;
-    //     user.save(function(err) {
-    //         res.redirect('/profile');
-    //     });
-    // });
 
     // facebook -------------------------------
     app.get('/unlink/facebook', isLoggedIn, function(req, res) {
@@ -156,8 +131,9 @@ module.exports = function(app, passport) {
         });
     });
 
-
 };
+
+
 
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {

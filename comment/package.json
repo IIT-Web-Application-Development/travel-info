@@ -1,0 +1,10 @@
+{
+  "name": "comment feature in final proj",
+  "version": "0.0.1",
+  "main": "server.js",
+  "author": "QI ZHANG",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
+  }
+}

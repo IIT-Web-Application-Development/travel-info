@@ -17,5 +17,13 @@
     "passport-google-oauth": "^0.1.5",
     "passport-local": "~0.1.6",
     "passport-twitter": "^1.0.4"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "version": "1.0.0",
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
